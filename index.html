@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dreamy Earth</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: black;
+      overflow: hidden;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .star {
+      position: absolute;
+      top: -20px;
+      width: 2px;
+      height: 100px;
+      background: linear-gradient(white, rgba(255, 255, 255, 0));
+      border-radius: 50%;
+      opacity: 0.9;
+      filter: blur(1px);
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.8),
+                  0 0 12px rgba(173, 216, 230, 0.6);
+      animation: fall 2s linear infinite;
+      transform: rotate(45deg);
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(0) translateX(0) rotate(45deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) translateX(-100px) rotate(45deg);
+        opacity: 0;
+      }
+    }
+
+    .earth-container {
+      position: relative;
+      z-index: 2;
+      margin: 20px 0;
+    }
+
+    .earth {
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      animation: rotateEarth 20s linear infinite;
+      cursor: pointer;
+      
+    }
+
+    @keyframes rotateEarth {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .dream-message {
+      font-size: 1.6rem;
+      color: #fff;
+      text-shadow: 0 0 10px #00f0ff, 0 0 20px #007dff;
+      animation: glow 3s ease-in-out infinite alternate;
+      z-index: 2;
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 10px #00f0ff, 0 0 20px #007dff;
+      }
+      to {
+        text-shadow: 0 0 20px #00f0ff, 0 0 40px #00d4ff;
+      }
+    }
+
+    .enter-button {
+      margin-top: 20px;
+      padding: 12px 28px;
+      font-size: 1.2rem;
+      background: transparent;
+      color: #fff;
+      border: 2px solid #00e5ff;
+      border-radius: 30px;
+      cursor: pointer;
+      z-index: 2;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 15px #00eaff;
+      animation: pulse 2s infinite;
+    }
+
+    .enter-button:hover {
+      background: #00e5ff;
+      color: black;
+      box-shadow: 0 0 25px #00f0ff;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 0 10px #00eaff;
+      }
+      50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px #00f0ff;
+      }
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 10px #00eaff;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="dream-message">Somewhere in the stars… a journey begins 💫</div>
+
+  <div class="earth-container">
+    <img class="earth" src="https://upload.wikimedia.org/wikipedia/commons/9/97/The_Earth_seen_from_Apollo_17.jpg" alt="Rotating Earth">
+  </div>
+
+  <button class="enter-button" onclick="window.location.href='page2.html'">Enter</button>
+
+  <script>
+    const totalStars = 80;
+
+    for (let i = 0; i < totalStars; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+
+      const size = Math.random() * 1.5 + 1;
+      const duration = Math.random() * 1.5 + 1.5;
+      const delay = Math.random() * 5;
+      const height = Math.random() * 80 + 60;
+
+      star.style.left = Math.random() * window.innerWidth + 'px';
+      star.style.width = size + 'px';
+      star.style.height = height + 'px';
+      star.style.opacity = Math.random() * 0.5 + 0.5;
+      star.style.animationDuration = duration + 's';
+      star.style.animationDelay = delay + 's';
+
+      document.body.appendChild(star);
+    }
+  </script>
+</body>
+</html>
